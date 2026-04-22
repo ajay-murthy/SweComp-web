@@ -39,10 +39,12 @@ jobs:
         run: pnpm --filter @workspace/goismo-website build
         env:
           PORT: "3000"
-          BASE_PATH: /SweComp-web/
+         CNAME_PATH: /
           NODE_ENV: production
           REPL_ID: ""
-
+          
+      - name: Write CNAME
+        run: echo "goismo.in" > artifacts/goismo-website/dist/public/CNAME
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
